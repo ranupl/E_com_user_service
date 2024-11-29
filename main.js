@@ -1,18 +1,9 @@
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv").config();
+require('dotenv').config({ path: './config/.env' });
 const cors = require("cors");
 const PORT = process.env.PORT || 5001;
-const db = require("./src/db/connection");
-const routes = require("./src/routes/user.route");
-
-db.query((err, results) => {
-    if (err) {
-      console.error('Query error:', err);
-      return;
-    }
-    console.log('Query results:', results);
-});
+const routes = require("./routes/user.route");
 
 app.use(express.json());
 app.use(cors());
